@@ -9,7 +9,7 @@ app.get('/api/login', (req, res) => {
 })
 
 app.get('/', (req,res) => {
-    res.send('Hello World!');
+    res.sendFile(path.join(__dirname, 'public', 'build', 'index.html'));
 });
 
 const server = app.listen(8888, () => {
