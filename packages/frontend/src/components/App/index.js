@@ -4,7 +4,7 @@ import Footer from '../Footer';
 
 function App() {
     return (
-        <>
+        <div className="bg-dark">
             <svg xmlns="http://www.w3.org/2000/svg" style={{ display: 'none' }}>
                 <symbol id="check" viewBox="0 0 16 16">
                     <title>Check</title>
@@ -18,7 +18,7 @@ function App() {
                 <Main />
                 <Footer />
             </div>
-        </>
+        </div>
     );
 }
 

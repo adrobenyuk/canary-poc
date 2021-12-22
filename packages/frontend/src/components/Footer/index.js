@@ -1,9 +1,11 @@
+import './style.css';
+
 const Footer = () => {
     return (
          <footer className="pt-4 my-md-5 pt-md-5 border-top">
             <div className="row">
                 <div className="col-12 col-md">
-                    <img className="mb-2" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="24" height="19" />
+                    <img className="logo mb-2" src="https://media.istockphoto.com/photos/searching-magnifier-glass-dollar-dollar-icon-under-magnifying-glass-picture-id1180233758" alt="" width="300"/>
                     <small className="d-block mb-3 text-muted">&copy; 2017–2021</small>
                 </div>
                 <div className="col-6 col-md">

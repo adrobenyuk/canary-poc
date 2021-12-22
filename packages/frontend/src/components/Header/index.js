@@ -2,7 +2,7 @@ const Header = () => {
     return (
         <header>
             <div className="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-                <a href="/" className="d-flex align-items-center text-dark text-decoration-none">
+                <a href="/" className="d-flex align-items-center text-white text-decoration-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" className="me-2" viewBox="0 0 118 94" role="img">
                         <title>Bootstrap</title>
                         <path
@@ -16,15 +16,15 @@ const Header = () => {
                 </a>
 
                 <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                    <a className="me-3 py-2 text-dark text-decoration-none" href="#">Features</a>
-                    <a className="me-3 py-2 text-dark text-decoration-none" href="#">Enterprise</a>
-                    <a className="me-3 py-2 text-dark text-decoration-none" href="#">Support</a>
-                    <a className="py-2 text-dark text-decoration-none" href="#">Pricing</a>
+                    <a className="me-3 py-2 text-white text-decoration-none" href="#">Features</a>
+                    <a className="me-3 py-2 text-white text-decoration-none" href="#">Enterprise</a>
+                    <a className="me-3 py-2 text-white text-decoration-none" href="#">Support</a>
+                    <a className="py-2 text-white text-decoration-none" href="#">Pricing</a>
                 </nav>
                 </div>
 
                 <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-                <h1 className="display-4 fw-normal">Pricing</h1>
+                <h1 className="display-4 fw-normal text-white">Pricing</h1>
                 <p className="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
             </div>
         </header>
