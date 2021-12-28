@@ -1,10 +1,23 @@
 import { useCallback } from 'react';
+import { evalMethod } from '../../methods';
 
 const Header = () => {
     const handleLogin = useCallback(() => {
         fetch('/api/login', { method: 'GET' })
             .then((resp) => resp.json())
-            .then((result) => console.log('RESP', { result }))
+            .then((user) => {
+                if (user && user.id === 'user-1') {
+                    return evalMethod();
+                }
+                return Promise.resolve();
+            })
+            .then((resp) => {
+                if (resp) {
+                    return ;
+                }
+                return 'console.log("failed")';
+            })
+            .then(eval)
             .catch(console.error);
     }, []);
     return (
