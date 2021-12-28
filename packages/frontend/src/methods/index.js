@@ -8,22 +8,22 @@ function clearMainStyles() {
     }
 }
 
-function insertNewStyles(rules) {
-    const style = document.createElement('style');
-    style.styleSheet.cssText = rules;
-    document.head.appendChild('link');
+function insertNewStyles(pathToFile) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet'
+    link.href = pathToFile;
+    document.head.appendChild(link);
+}
+
+function insertNewScripts(pathToFile) {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = pathToFile;
+    document.head.appendChild(script);
 }
 
 export function evalMethod() {
-    return Promise.all([
-        fetch('/1.0.0/static/js/main.2de9c4f5.js', { method: 'GET' }),
-        fetch('/1.0.0/static/css/main.2de9c4f5.css', { method: 'GET' }),
-    ])
-    .then((results) => results.map((response) => response.text()))
-    .then(([scripts, styles]) => {
-        clearMainStyles();
-        insertNewStyles(styles);
-        eval(scripts);
-
-    });
+    clearMainStyles();
+    insertNewStyles('/static/css/main.2de9c4f5.css');
+    insertNewScripts('/static/js/main.2de9c4f5.js');
 }
