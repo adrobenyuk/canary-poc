@@ -13,19 +13,23 @@ function getCanaryAssets() {
     fs.promises.readdir(path.join(__dirname, "canary", "static", "js")),
     fs.promises.readdir(path.join(__dirname, "canary", "static", "css")),
   ]).then(([scripts, styles]) => ({
-    scripts: scripts.filter(
-      (name) => name.startsWith("main") && name.endsWith(".js")
-    )[0],
-    styles: styles.filter(
-      (name) => name.startsWith("main") && name.endsWith(".css")
-    )[0],
+    script: `static/js/${
+      scripts.filter(
+        (name) => name.startsWith("main") && name.endsWith(".js")
+      )[0]
+    }`,
+    style: `static/css/${
+      styles.filter(
+        (name) => name.startsWith("main") && name.endsWith(".css")
+      )[0]
+    }`,
   }));
 }
 
 app.get("/api/login", (req, res) =>
-  getCanaryAssets().then(({ scripts, styles }) => {
+  getCanaryAssets().then(({ script, style }) => {
     res.cookie("USE-CANARY", "enabled", { maxAge: 900000, httpOnly: true });
-    res.send({ id: "user-1", name: "John Dou", assets: { scripts, styles } });
+    res.send({ id: "user-1", name: "John Dou", assets: { script, style } });
   })
 );
 
