@@ -2,9 +2,11 @@ const path = require("path");
 const fs = require("fs");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const app = express();
 
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "canary")));
 
@@ -26,10 +28,14 @@ function getCanaryAssets() {
   }));
 }
 
-app.get("/api/login", (req, res) =>
+app.post("/api/login", (req, res) =>
   getCanaryAssets().then(({ script, style }) => {
-    res.cookie("USE-CANARY", "enabled", { maxAge: 900000, httpOnly: true });
-    res.send({ id: "user-1", name: "John Dou", assets: { script, style } });
+    let assets;
+    if (req.body.email && req.body.email.includes("canary")) {
+      res.cookie("USE-CANARY", "enabled", { maxAge: 900000, httpOnly: true });
+      assets = { script, style };
+    }
+    res.send({ id: "user-1", name: "John Dou", assets });
   })
 );
 
