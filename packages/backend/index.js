@@ -31,9 +31,9 @@ app.get("/api/login", (req, res) =>
 
 app.use("*", (req, res) => {
   if (req.cookies["USE-CANARY"] && req.cookies["USE-CANARY"] === "enabled") {
-    return res.sendFile(path.join(__dirname, "canary", "index.html"));
+    return res.sendFile(path.join(__dirname, "canary", "_index.html"));
   }
-  return res.sendFile(path.join(__dirname, "public", "index.html"));
+  return res.sendFile(path.join(__dirname, "public", "_index.html"));
 });
 
 app.listen(8888, () => {
