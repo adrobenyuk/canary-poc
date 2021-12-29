@@ -1,7 +1,24 @@
+import { useState, useEffect } from "react";
+
 import Router from "../Router";
 import "./styles.css";
 
 function App() {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    fetch("/api/ping", {
+      method: "GET",
+    })
+      .then((resp) => resp.json())
+      .then((user) => {
+        if (user) {
+          setUser(user);
+        }
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="app-body bg-dark text-white">
       <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
@@ -11,7 +28,7 @@ function App() {
         </symbol>
       </svg>
       <div className="container py-3">
-        <Router />
+        <Router user={user} onLogin={setUser} />
       </div>
     </div>
   );

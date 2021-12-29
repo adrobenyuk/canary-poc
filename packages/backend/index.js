@@ -27,14 +27,23 @@ function getCanaryAssets() {
     }`,
   }));
 }
+app.get("/api/ping", (req, res) => {
+  if (req.cookies["AUTH"]) {
+    return res.send({ id: "user-1", name: "John Dou" });
+  }
+  return res.send(undefined);
+});
 
 app.post("/api/login", (req, res) =>
   getCanaryAssets().then(({ script, style }) => {
     let assets;
+
     if (req.body.email && req.body.email.includes("canary")) {
       res.cookie("USE-CANARY", "enabled", { maxAge: 900000, httpOnly: true });
       assets = { script, style };
     }
+
+    res.cookie("AUTH", "token-1", { maxAge: 900000, httpOnly: true });
     res.send({ id: "user-1", name: "John Dou", assets });
   })
 );

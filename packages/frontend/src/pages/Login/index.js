@@ -1,11 +1,12 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadCanary } from "../../methods";
 
 import "./styles.css";
 
-const Login = () => {
+const Login = ({ user, onLogin }) => {
   const navigate = useNavigate();
+
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
 
@@ -18,6 +19,7 @@ const Login = () => {
     })
       .then((resp) => resp.json())
       .then((user) => {
+        onLogin(user);
         if (user && user.assets) {
           return loadCanary(user.assets.script, user.assets.style);
         }
@@ -25,6 +27,12 @@ const Login = () => {
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <div className="login-page">
