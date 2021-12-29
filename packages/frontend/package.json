@@ -17,7 +17,7 @@
     "eject": "react-scripts eject",
     "build": "npm-run-all build:**",
     "build:app": "react-scripts build",
-    "build-canary:clean": "rm -rf ../backend/canary/**",
+    "build-canary:clean": "rm -rf ../backend/canary/** && mkdir canary",
     "build:move-to-server": "mv ./build/* ../backend/canary",
     "build:rename-index": "mv ../backend/canary/index.html ../backend/canary/_index.html"
   },

@@ -1,2 +1,4 @@
 node_modules
 build
+packages/backend/canary
+packages/backend/public
