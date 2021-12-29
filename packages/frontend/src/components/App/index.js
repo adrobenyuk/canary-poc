@@ -1,11 +1,9 @@
-import Header from "../Header";
-// import Main from '../Main';
-import Footer from "../Footer";
-import LoginPage from "../../pages/Login";
+import Router from "../Router";
+import "./styles.css";
 
 function App() {
   return (
-    <div className="bg-dark">
+    <div className="app-body bg-dark text-white">
       <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
         <symbol id="check" viewBox="0 0 16 16">
           <title>Check</title>
@@ -13,9 +11,7 @@ function App() {
         </symbol>
       </svg>
       <div className="container py-3">
-        {/* <Header /> */}
-        <LoginPage />
-        {/* <Footer /> */}
+        <Router />
       </div>
     </div>
   );

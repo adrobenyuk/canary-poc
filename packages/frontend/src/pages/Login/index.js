@@ -1,9 +1,11 @@
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { loadCanary } from "../../methods";
 
 import "./styles.css";
 
 const Login = () => {
+  const navigate = useNavigate();
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
 
@@ -19,17 +21,17 @@ const Login = () => {
         if (user && user.assets) {
           return loadCanary(user.assets.script, user.assets.style);
         }
-        return ""; // TODO: push to main
+        return navigate("/", { replace: true });
       })
       .catch(console.error);
   }, []);
 
   return (
     <div className="login-page">
-      <h1 className="mb-5 text-white">Login</h1>
+      <h1 className="mb-5">Login</h1>
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label text-white">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
@@ -44,10 +46,7 @@ const Login = () => {
           </div>
         </div>
         <div className="mb-3">
-          <label
-            htmlFor="exampleInputPassword1"
-            className="form-label text-white"
-          >
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label>
           <input
@@ -63,10 +62,7 @@ const Login = () => {
             className="form-check-input"
             id="exampleCheck1"
           />
-          <label
-            className="form-check-label text-white"
-            htmlFor="exampleCheck1"
-          >
+          <label className="form-check-label" htmlFor="exampleCheck1">
             Check me out
           </label>
         </div>
