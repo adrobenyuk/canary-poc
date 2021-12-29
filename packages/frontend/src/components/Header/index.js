@@ -1,10 +1,14 @@
+import { NavLink, Link } from "react-router-dom";
+
+import "./styles.css";
+
 const Header = () => {
   return (
     <header>
       <div className="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-        <a
-          href="/"
-          className="d-flex align-items-center text-dark text-decoration-none"
+        <Link
+          to="/"
+          className="nav-link d-flex align-items-center text-decoration-none"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -22,32 +26,32 @@ const Header = () => {
               fill="currentColor"
             />
           </svg>
-          <span className="fs-4">Pricing example</span>
-        </a>
+          <span className="fs-4">Example</span>
+        </Link>
 
         <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-          <a className="me-3 py-2 text-dark text-decoration-none" href="#">
-            Features
-          </a>
-          <a className="me-3 py-2 text-dark text-decoration-none" href="#">
-            Enterprise
-          </a>
-          <a className="me-3 py-2 text-dark text-decoration-none" href="#">
-            Support
-          </a>
-          <a className="py-2 text-dark text-decoration-none" href="#">
+          <NavLink className="me-3 py-2 nav-link text-decoration-none" to="/">
             Pricing
-          </a>
+          </NavLink>
+          <NavLink
+            className="me-3 py-2 nav-link text-decoration-none"
+            to="/enterprise"
+          >
+            Enterprise
+          </NavLink>
+          <NavLink
+            className="me-3 py-2 nav-link text-decoration-none"
+            to="/support"
+          >
+            Support
+          </NavLink>
+          <NavLink
+            className="me-3 py-2 nav-link text-decoration-none"
+            to="/features"
+          >
+            Features
+          </NavLink>
         </nav>
-      </div>
-
-      <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-        <h1 className="display-4 fw-normal">Pricing</h1>
-        <p className="fs-5 text-muted">
-          Quickly build an effective pricing table for your potential customers
-          with this Bootstrap example. It’s built with default Bootstrap
-          components and utilities with little customization.
-        </p>
       </div>
     </header>
   );

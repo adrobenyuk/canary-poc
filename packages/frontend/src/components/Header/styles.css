@@ -1,0 +1,9 @@
+.nav-link,
+.nav-link:focus {
+  color: inherit;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--bs-primary);
+}
