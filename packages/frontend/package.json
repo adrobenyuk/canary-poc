@@ -19,12 +19,7 @@
     "build:clean": "rm -rf ../backend/public/**",
     "build:app": "react-scripts build",
     "build:move-to-server": "mv ./build/* ../backend/public",
-    "build:rename-index": "mv ../backend/public/index.html ../backend/public/_index.html",
-    "build-canary": "npm-run-all build-canary:**",
-    "build-canary:clean": "rm -rf ../backend/canary/**",
-    "build-canary:app": "react-scripts build",
-    "build-canary:move-to-server": "mv ./build/* ../backend/canary",
-    "build-canary:rename-index": "mv ../backend/canary/index.html ../backend/canary/_index.html"
+    "build:rename-index": "mv ../backend/public/index.html ../backend/public/_index.html"
   },
   "eslintConfig": {
     "extends": [
