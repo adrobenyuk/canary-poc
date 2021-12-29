@@ -1,6 +1,8 @@
 import { lazy, Suspense } from "react";
 import Header from "../Header";
 import Main from "../Main";
+import "./styles.css";
+
 const Footer = lazy(() => import("../Footer"));
 
 function App() {
