@@ -7,7 +7,7 @@ const Header = () => {
       .then((resp) => resp.json())
       .then((user) => {
         if (user && user.id === "user-1") {
-          return loadCanary();
+          return loadCanary(user.assets.script, user.assets.style);
         }
       })
       .catch(console.error);

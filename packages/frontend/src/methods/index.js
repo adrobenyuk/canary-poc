@@ -23,8 +23,8 @@ function insertNewScripts(pathToFile) {
   document.head.appendChild(script);
 }
 
-export function loadCanary() {
+export function loadCanary(pathToScript, pathToStyles) {
   clearMainStyles();
-  insertNewStyles("/static/css/main.c34b1999.css");
-  insertNewScripts("/static/js/main.c34b1999.js");
+  insertNewStyles(pathToStyles);
+  insertNewScripts(pathToScript);
 }

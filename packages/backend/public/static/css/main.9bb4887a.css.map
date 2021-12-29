@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.9bb4887a.css","mappings":"AAAA,IACE,YACF,CCFA,MACE,aAAc,CAGd,WAAY,CADZ,aAAc,CADd,gBAGF","sources":["components/Main/style.css","components/Footer/style.css"],"sourcesContent":[".bi {\n  fill: #ffc107;\n}\n",".logo {\n  display: block;\n  max-width: 2500px;\n  margin: 0 auto;\n  height: auto;\n}\n"],"names":[],"sourceRoot":""}
