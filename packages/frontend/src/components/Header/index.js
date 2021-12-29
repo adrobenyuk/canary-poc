@@ -1,17 +1,4 @@
-import { useCallback } from "react";
-import { loadCanary } from "../../methods";
-
 const Header = () => {
-  const handleLogin = useCallback(() => {
-    fetch("/api/login", { method: "GET" })
-      .then((resp) => resp.json())
-      .then((user) => {
-        if (user && user.id === "user-1") {
-          return loadCanary(user.assets.script, user.assets.style);
-        }
-      })
-      .catch(console.error);
-  }, []);
   return (
     <header>
       <div className="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
@@ -50,13 +37,6 @@ const Header = () => {
           </a>
           <a className="me-3 py-2 text-white text-decoration-none" href="#">
             Pricing
-          </a>
-          <a
-            className="py-2 text-white text-decoration-none"
-            href="#"
-            onClick={handleLogin}
-          >
-            Login
           </a>
         </nav>
       </div>
