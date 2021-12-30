@@ -1,3 +1,5 @@
+import { unmountComponentAtNode } from "react-dom";
+
 function clearMainStyles() {
   const styleSheet = Array.from(document.styleSheets).find(({ href }) =>
     href.includes("main")
@@ -7,6 +9,15 @@ function clearMainStyles() {
       styleSheet.deleteRule(styleSheet.cssRules.length - 1);
     }
   }
+}
+
+function unmountOldApp() {
+  unmountComponentAtNode(document.getElementById("root"));
+}
+
+function renderPlaceholder() {
+  const root = document.getElementById("root");
+  root.innerHTML = "<h1>Loading...</h1>";
 }
 
 function insertNewStyles(pathToFile) {
@@ -25,6 +36,8 @@ function insertNewScripts(pathToFile) {
 
 export function loadCanary(pathToScript, pathToStyles) {
   clearMainStyles();
+  unmountOldApp();
+  renderPlaceholder();
   insertNewStyles(pathToStyles);
   insertNewScripts(pathToScript);
 }
