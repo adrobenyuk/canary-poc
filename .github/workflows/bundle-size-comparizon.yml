@@ -17,11 +17,11 @@ jobs:
                   node-version: 14.x
                   registry-url: 'https://npm.pkg.github.com'
                   scope: '@shopmonkeyus'
-              # env:
-              #     NODE_AUTH_TOKEN: ${{ secrets.SHOPMONKEY_GITHUB_TOKEN }}
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.SHOPMONKEY_GITHUB_TOKEN }}
               
-            - name: Setup package access
-              run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
+            # - name: Setup package access
+            #   run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
 
             - name: Install dependencies
               run: cd packages/frontend && npm install
@@ -53,11 +53,11 @@ jobs:
                   node-version: 14.x
                   registry-url: 'https://npm.pkg.github.com'
                   scope: '@shopmonkeyus'
-              # env:
-              #     NODE_AUTH_TOKEN: ${{ secrets.SHOPMONKEY_GITHUB_TOKEN }}
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
             
-            - name: Setup package access
-              run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
+            # - name: Setup package access
+            #   run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
 
             - name: Install dependencies
               run: cd packages/frontend && npm install
@@ -89,10 +89,10 @@ jobs:
                   node-version: 14.x
                   registry-url: 'https://npm.pkg.github.com'
                   scope: '@shopmonkeyus'
-              # env:
-              #     NODE_AUTH_TOKEN: ${{ secrets.SHOPMONKEY_GITHUB_TOKEN }}
-            - name: Setup package access
-              run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+            # - name: Setup package access
+            #   run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
 
             - name: Install dependencies
               run: cd packages/frontend && npm install
