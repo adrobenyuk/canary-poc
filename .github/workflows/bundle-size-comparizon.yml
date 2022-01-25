@@ -1,0 +1,114 @@
+name: Bundle size comparison
+
+on: [push, pull_request]
+
+jobs:
+    build_base_bundle:
+        runs-on: ubuntu-latest
+
+        steps: 
+            - uses: actions/checkout@v2
+              with:
+                ref: master
+            
+            - name: Use Node.js 14.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+                  registry-url: 'https://npm.pkg.github.com'
+                  scope: '@shopmonkeyus'
+              # env:
+              #     NODE_AUTH_TOKEN: ${{ secrets.SHOPMONKEY_GITHUB_TOKEN }}
+              
+            - name: Setup package access
+              run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
+
+            - name: Install dependencies
+              run: npm run bootstrap
+
+            - name: Build base bundle
+              run: cd packages/frontend && npm run build
+            
+            # Upload base build like artefact to be able to access it in further jobs
+            # https://github.com/actions/upload-artifact#usage
+            - name: Upload base bundle
+              uses: actions/upload-artifact@v2
+              with: 
+                name: build-base
+                path: packages/frontend/build/
+                # Decrease default retention
+                retention-days: 1
+                # TODO: remove after finished
+                if-no-files-found: warn
+    
+    build_current_bundle:
+        runs-on: ubuntu-latest
+
+        steps: 
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js 14.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+                  registry-url: 'https://npm.pkg.github.com'
+                  scope: '@shopmonkeyus'
+              # env:
+              #     NODE_AUTH_TOKEN: ${{ secrets.SHOPMONKEY_GITHUB_TOKEN }}
+            
+            - name: Setup package access
+              run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
+
+            - name: Install dependencies
+              run: npm run bootstrap
+
+            - name: Build base bundle
+              run: cd packages/frontend && npm run build
+
+            # Upload base build like artefact to be able to access it in further jobs
+            # https://github.com/actions/upload-artifact#usage
+            - name: Upload current bundle
+              uses: actions/upload-artifact@v2
+              with: 
+                name: build
+                path: packages/frontend/build/
+                # Decrease default retention
+                retention-days: 1
+                # TODO: remove after finished
+                if-no-files-found: warn
+
+    compare_bundle_size:
+        runs-on: ubuntu-latest
+
+        steps: 
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js 14.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 14.x
+                  registry-url: 'https://npm.pkg.github.com'
+                  scope: '@shopmonkeyus'
+              # env:
+              #     NODE_AUTH_TOKEN: ${{ secrets.SHOPMONKEY_GITHUB_TOKEN }}
+            - name: Setup package access
+              run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
+
+            - name: Install dependencies
+              run: npm run bootstrap
+
+            - name: Download base bundle
+              uses: actions/download-artifact@v2
+              with:
+                name: build-base
+
+            - name: Download current bundle
+              uses: actions/download-artifact@v2
+              with:
+                name: build
+
+            - name: Compare bundle sizes
+              env: 
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: cd ./packages/frontend && npm run danger:ci
+              
