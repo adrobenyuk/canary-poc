@@ -6,10 +6,7 @@ const {
 } = require("./scripts/fileStats");
 
 function compareBundleSizes() {
-  Promise.all([
-    getAssetsSizes("../../build-base"),
-    getAssetsSizes("../../build"),
-  ])
+  Promise.all([getAssetsSizes(".build-base"), getAssetsSizes(".build")])
     .then(([base, current]) => {
       const scripts = mergeFilesInfo(base.scripts, current.scripts);
       const styles = mergeFilesInfo(base.styles, current.styles);

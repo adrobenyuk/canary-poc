@@ -102,10 +102,16 @@ jobs:
               with:
                 name: build-base
 
+            - name: Extract base bundle
+              run: unzip ./build-base.zip -d packages/frontend/build-base
+
             - name: Download current bundle
               uses: actions/download-artifact@v2
               with:
                 name: build
+
+            - name: Extract current bundle
+              run: unzip ./base.zip -d packages/frontend/build
 
             - name: Compare bundle sizes
               env: 
