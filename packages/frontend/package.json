@@ -22,10 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build": "npm-run-all build:**",
-    "build:clean": "rm -rf ../backend/public/**",
     "build:app": "react-scripts build",
-    "build:move-to-server": "mv ./build/* ../backend/public",
-    "build:rename-index": "mv ../backend/public/index.html ../backend/public/_index.html",
     "danger:ci": "danger ci"
   },
   "eslintConfig": {
