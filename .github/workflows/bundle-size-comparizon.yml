@@ -101,11 +101,16 @@ jobs:
               uses: actions/download-artifact@v2
               with:
                 name: build-base
+                path: packages/frontend/build-base/
 
             - name: Download current bundle
               uses: actions/download-artifact@v2
               with:
                 name: build
+                path: packages/frontend/build/
+
+            - name: Show base build artifacts
+              run: cd ./packages/frontend/build && ls -ll
 
             - name: Compare bundle sizes
               env: 
