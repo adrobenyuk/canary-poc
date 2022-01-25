@@ -103,7 +103,7 @@ jobs:
                 name: build-base
 
             - name: Extract base bundle
-              run: unzip ./canary-poc/build-base.zip -d packages/frontend/build-base
+              run: ls -ll && unzip ./canary-poc/build-base.zip -d packages/frontend/build-base
 
             - name: Download current bundle
               uses: actions/download-artifact@v2
