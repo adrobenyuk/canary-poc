@@ -1,9 +1,9 @@
-import { markdown } from "danger";
-import {
+const { markdown } = require("danger");
+const {
   getAssetsSizes,
   printFileTable,
   mergeFilesInfo,
-} from "./scripts/fileStats";
+} = require("./scripts/fileStats");
 
 function compareBundleSizes() {
   Promise.all([getAssetsSizes("./build-base"), getAssetsSizes("./build")])
