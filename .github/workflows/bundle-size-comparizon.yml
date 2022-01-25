@@ -24,7 +24,7 @@ jobs:
               run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
 
             - name: Install dependencies
-              run: npm run bootstrap
+              run: cd packages/frontend && npm install
 
             - name: Build base bundle
               run: cd packages/frontend && npm run build
@@ -60,7 +60,7 @@ jobs:
               run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
 
             - name: Install dependencies
-              run: npm run bootstrap
+              run: cd packages/frontend && npm install
 
             - name: Build base bundle
               run: cd packages/frontend && npm run build
@@ -95,7 +95,7 @@ jobs:
               run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_AUTH_TOKEN}}" > .npmrc
 
             - name: Install dependencies
-              run: npm run bootstrap
+              run: cd packages/frontend && npm install
 
             - name: Download base bundle
               uses: actions/download-artifact@v2
