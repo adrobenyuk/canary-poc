@@ -104,7 +104,7 @@ jobs:
                 path: packages/frontend/build-base/
             
             - name: Show current
-              run: ls -ll && pwd
+              run: cd ../ && ls -ll && pwd
 
             - name: Extract base bundle
               run: unzip ./canary-poc/build-base.zip -d packages/frontend/build-base
