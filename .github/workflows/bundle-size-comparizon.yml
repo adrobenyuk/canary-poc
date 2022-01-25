@@ -111,4 +111,6 @@ jobs:
               env: 
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: cd ./packages/frontend && npm run danger:ci
+
+        needs: [build_current_bundle, build_base_bundle]
               
