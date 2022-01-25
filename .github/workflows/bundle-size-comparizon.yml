@@ -109,8 +109,8 @@ jobs:
                 name: build
                 path: packages/frontend/build/
 
-            - name: Show artifacts
-              run: cd ./packages/frontend && ls -ll
+            - name: Show base artifacts
+              run: cd ./packages/frontend/base && ls -ll
 
             - name: Compare bundle sizes
               env: 
