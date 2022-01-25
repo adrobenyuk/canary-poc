@@ -7,32 +7,35 @@ import "./styles.css";
 const Login = ({ user, onLogin }) => {
   const navigate = useNavigate();
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    fetch("/api/login", {
-      method: "POST",
-      body: JSON.stringify({ email: e.target.elements.email.value }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((resp) => resp.json())
-      .then((user) => {
-        onLogin(user);
-        if (user && user.assets) {
-          return loadCanary(user.assets.script, user.assets.style);
-        }
-        return navigate("/", { replace: true });
+      fetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify({ email: e.target.elements.email.value }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch(console.error);
-  }, []);
+        .then((resp) => resp.json())
+        .then((user) => {
+          onLogin(user);
+          if (user && user.assets) {
+            return loadCanary(user.assets.script, user.assets.style);
+          }
+          return navigate("/", { replace: true });
+        })
+        .catch(console.error);
+    },
+    [navigate, onLogin]
+  );
 
   useEffect(() => {
     if (user) {
       navigate("/");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   return (
     <div className="login-page">

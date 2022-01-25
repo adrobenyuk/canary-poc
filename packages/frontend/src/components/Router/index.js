@@ -16,7 +16,7 @@ const Router = ({ user, onLogin }) => {
     if (user === undefined) {
       navigate("/login");
     }
-  }, [user, location.pathname]);
+  }, [user, location.pathname, navigate]);
 
   return (
     <Routes>
@@ -52,7 +52,10 @@ const Router = ({ user, onLogin }) => {
           </Suspense>
         }
       />
-      <Route path="/login" element={<LoginPage user={user} onLogin={onLogin} />} />
+      <Route
+        path="/login"
+        element={<LoginPage user={user} onLogin={onLogin} />}
+      />
     </Routes>
   );
 };
