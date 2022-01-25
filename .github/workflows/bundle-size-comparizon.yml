@@ -101,14 +101,19 @@ jobs:
               uses: actions/download-artifact@v2
               with:
                 name: build-base
+                path: packages/frontend/build-base/
+            
+            - name: Show current
+              run: ls -ll && pwd
 
             - name: Extract base bundle
-              run: pwd && unzip ./canary-poc/build-base.zip -d packages/frontend/build-base
+              run: unzip ./canary-poc/build-base.zip -d packages/frontend/build-base
 
             - name: Download current bundle
               uses: actions/download-artifact@v2
               with:
                 name: build
+                path: packages/frontend/build/
 
             - name: Extract current bundle
               run: unzip ./canary-poc/base.zip -d packages/frontend/build
